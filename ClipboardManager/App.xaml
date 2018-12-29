@@ -1,0 +1,32 @@
+﻿<Application x:Class="ClipboardManager.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ClipboardManager"
+             xmlns:Convertors="clr-namespace:ClipboardManager.Classes.Convertors"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <Convertors:ClipboardItemIndexToImageConverter x:Key="ClipboardItemIndexToImageConverter"/>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml"/>
+
+                <!--<ResourceDictionary Source="/styles/Button.xaml"/>
+                <ResourceDictionary Source="/styles/Label.xaml"/>
+                <ResourceDictionary Source="/styles/Separator.xaml"/>
+                <ResourceDictionary Source="/styles/TextBlock.xaml"/>
+                <ResourceDictionary Source="/styles/RadioButton.xaml"/>-->
+                <ResourceDictionary Source="/styles/GridViewColumnHeader.xaml"/>
+                <ResourceDictionary Source="/styles/ListViewItem.xaml"/>
+                <ResourceDictionary Source="/styles/Thumb.xaml"/>
+                <!--<ResourceDictionary Source="/styles/CheckBox.xaml"/>
+                <ResourceDictionary Source="/styles/ComboBox.xaml"/>
+                <ResourceDictionary Source="/styles/ComboBoxItem.xaml"/>-->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
