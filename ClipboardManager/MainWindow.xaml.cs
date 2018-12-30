@@ -13,8 +13,16 @@ namespace ClipboardManager
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string lastTest;
+        private string lastText;
+        private string lastTextUsingEnterKey;
         private System.Windows.Forms.NotifyIcon notifyIcon;
+
+        private System.Windows.Forms.ContextMenu contextMenu;
+        private System.Windows.Forms.MenuItem menuItemClose;
+        private System.Windows.Forms.MenuItem menuItemOpen;
+        private System.Windows.Forms.MenuItem menuItemSettings;
+        private System.ComponentModel.IContainer components;
+
         private ViewModel viewModel;
         private ClipboardMonitor clipboardMonitor;
         private bool isLeftShiftDown;
@@ -66,19 +74,63 @@ namespace ClipboardManager
         private void CreateNotifyIcon()
         {
             notifyIcon = new System.Windows.Forms.NotifyIcon();
+            notifyIcon.DoubleClick += NotifyIcon_DoubleClick;
+
+            components = new System.ComponentModel.Container();
+            contextMenu = new System.Windows.Forms.ContextMenu();
+            menuItemClose = new System.Windows.Forms.MenuItem();
+            menuItemOpen = new System.Windows.Forms.MenuItem();
+            menuItemSettings = new System.Windows.Forms.MenuItem();
+
+            contextMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] { menuItemClose, menuItemOpen, menuItemSettings });
+
+            menuItemSettings.Index = 0;
+            menuItemSettings.Text = "Settings";
+            menuItemSettings.Click += MenuItemSettings_Click;
+
+            menuItemOpen.Index = 1;
+            menuItemOpen.Text = "Open";
+            menuItemOpen.Click += MenuItemOpen_Click;
+
+            menuItemClose.Index = 2;
+            menuItemClose.Text = "Exit";
+            menuItemClose.Click += MenuItemClose_Click;
+
+            notifyIcon.ContextMenu = contextMenu;
+            notifyIcon.Text = "Clipboard manager";
             notifyIcon.MouseDown += NotifyIcon_MouseDown;
             notifyIcon.Icon = Properties.Resources.app_icon;
             notifyIcon.Visible = true;
         }
 
+        private void NotifyIcon_DoubleClick(object sender, EventArgs e)
+        {
+            MaximaizeApplication();
+            Activate();
+        }
+
+        private void MenuItemClose_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void MenuItemSettings_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MenuItemOpen_Click(object sender, EventArgs e)
+        {
+
+        }
         private void NotifyIcon_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                ContextMenu contextMenu = (ContextMenu)FindResource("NotifierContextMenu");
-                if (contextMenu != null)
-                    contextMenu.IsOpen = true;
-            }
+            //if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            //{
+            //    ContextMenu contextMenu = (ContextMenu)FindResource("NotifierContextMenu");
+            //    if (contextMenu != null)
+            //        contextMenu.IsOpen = true;
+            //}
         }
 
         private void InitiateClipboardMonitor()
@@ -92,12 +144,13 @@ namespace ClipboardManager
             try
             {
                 string clipboardText = Clipboard.GetText(TextDataFormat.UnicodeText);
-                if (clipboardText != lastTest && clipboardText != "")
-                    viewModel.Clipboards.Insert(0, new ClipboardItem {
+                if (clipboardText != lastText && clipboardText != "" && clipboardText != lastTextUsingEnterKey)
+                    viewModel.Clipboards.Insert(0, new ClipboardItem
+                    {
                         Text = clipboardText
                     });
 
-                lastTest = clipboardText;
+                lastText = clipboardText;
             }
             catch (Exception)
             {
@@ -128,7 +181,8 @@ namespace ClipboardManager
 
                 int index = ListViewUsers.SelectedIndex;
                 ClipboardItem selectedItem = ListViewUsers.SelectedItem as ClipboardItem;
-                Clipboard.SetText(selectedItem.Text);
+                lastTextUsingEnterKey = selectedItem.Text;
+                Clipboard.SetText(lastTextUsingEnterKey);
                 ListViewUsers.SelectedItem = null;
                 MinimizeApplication();
 
@@ -174,7 +228,7 @@ namespace ClipboardManager
 
         private void Window_StateChanged(object sender, EventArgs e)
         {
-             if (WindowState == WindowState.Normal)
+            if (WindowState == WindowState.Normal)
             {
                 if (viewModel.Clipboards.Count != 0)
                 {
@@ -192,7 +246,7 @@ namespace ClipboardManager
         {
             if (e.Key == Key.Escape)
                 MinimizeApplication();
-        }        
+        }
 
         private void MinimizeApplication()
         {
@@ -224,6 +278,11 @@ namespace ClipboardManager
         private void Menu_Settings(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void BtnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            //
         }
     }
 }

@@ -163,9 +163,9 @@ namespace ClipboardManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon document {
+        internal static System.Drawing.Icon notes {
             get {
-                object obj = ResourceManager.GetObject("document", resourceCulture);
+                object obj = ResourceManager.GetObject("notes", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
