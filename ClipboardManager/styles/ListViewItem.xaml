@@ -30,9 +30,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}" 
-                            BorderThickness="{TemplateBinding BorderThickness}" 
-                            Background="{TemplateBinding Background}" 
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
                             CornerRadius="2"
                             SnapsToDevicePixels="true">
                         <Border x:Name="InnerBorder"
@@ -53,255 +53,71 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="False" />
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="False"/>
                     <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False"/>
                 </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="Foreground" Value="#505050"/>
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderBrush" Value="Transparent"/>
                 <Setter Property="BorderThickness" Value="0.5"/>
             </MultiDataTrigger>
-
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
                     <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False"/>
                 </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="Silver"/>
+                <Setter Property="Foreground" Value="#505050"/>
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush Color="Silver" Opacity=".2" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush">
+                    <Setter.Value>
+                        <SolidColorBrush Color="Silver" Opacity=".2" />
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="BorderThickness" Value="0.5"/>
             </MultiDataTrigger>
-
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="False" />
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="False"/>
                     <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True"/>
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="Silver"/>
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush Color="Silver" Opacity=".2" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush">
+                    <Setter.Value>
+                        <SolidColorBrush Color="Silver" Opacity=".2" />
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="BorderThickness" Value="0.5"/>
                 <!--<Setter Property="ToolTip" Value="{Binding Path=Text}"/>-->
             </MultiDataTrigger>
-
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
                     <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True"/>
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="Silver"/>
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush Color="Silver" Opacity=".2" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush">
+                    <Setter.Value>
+                        <SolidColorBrush Color="Silver" Opacity=".2" />
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="BorderThickness" Value="0.5"/>
             </MultiDataTrigger>
-
-
-
-
-
-
-
-
-
-            <!--#region idle-->
-            <!--<MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=(Container:Captures.IsPlay)}" Value="False"/>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="False" />
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False"/>
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="{DynamicResource ListViewItemIdleForegroundColor}"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="{DynamicResource ListViewItemBorderBrushColor}"/>
-                --><!--<Setter Property="BorderBrush" Value="{DynamicResource ListViewItemBorderBrushColor}"/>--><!--
-                <Setter Property="BorderThickness" Value="0,0.3,0,0.3"/>
-            </MultiDataTrigger>-->
-
-            <!--<MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=(Container:Captures.IsPlay)}" Value="False"/>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="False" />
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False"/>
-                    -->
-            <!--<Condition Binding="{Binding BadCheckSumExist}" Value="False"/>-->
-            <!--
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=(ItemsControl.AlternationIndex)}" Value="1"/>
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="{DynamicResource ListViewItemForegroundColor}"/>
-                <Setter Property="Background" Value="{DynamicResource ListViewItemBackgroundColorEvenIndex}"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0"/>
-            </MultiDataTrigger>-->
-            <!--#endregion-->
-
-            <!--#region mouse over-->
-            <!--<MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=(Container:Captures.IsPlay)}" Value="False"/>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False" />
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="{DynamicResource LabelIntermediateForegroundColor}"/>
-                <Setter Property="BorderThickness" Value="0,0.3,0,0.3"/>
-            </MultiDataTrigger>-->
-            <!--#endregion-->
-
-            <!--#region is selected-->
-            <!--<MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=(Container:Captures.IsPlay)}" Value="False"/>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="{DynamicResource LabelForegroundColor}"/>
-                <Setter Property="Background" Value="{DynamicResource ListViewItemForegroundColor}"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0,0,0,0"/>
-            </MultiDataTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=(Container:Captures.IsPlay)}" Value="False"/>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="False" />
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="{DynamicResource LabelForegroundColor}"/>
-                <Setter Property="Background" Value="{DynamicResource ListViewItemForegroundColor}"/>
-                <Setter Property="BorderBrush" Value="Transparent"/> 
-                <Setter Property="BorderThickness" Value="0,0,0,0"/>
-            </MultiDataTrigger>-->
-            <!--#endregion-->
-
-            <!--#region while play-->
-            <!--<MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=(Container:Captures.IsPlay)}" Value="True"/>
-                </MultiDataTrigger.Conditions>
-                <Setter Property="IsEnabled" Value="False"/>
-                <Setter Property="Foreground" Value="{DynamicResource ListViewItemWhilePlayForegroundColor}"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="{DynamicResource ListViewItemBorderBrushColor}"/>
-                <Setter Property="BorderThickness" Value="0,0.3,0,0.3"/>
-            </MultiDataTrigger>-->
-
-            <!--<MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=(Container:Captures.IsPlay)}" Value="True"/>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="False" />
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False"/>
-                    <Condition Binding="{Binding BadCheckSumExist}" Value="False"/>
-                    -->
-            <!--<Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=(ItemsControl.AlternationIndex)}" Value="1"/>-->
-            <!--
-                </MultiDataTrigger.Conditions>
-                <Setter Property="IsEnabled" Value="False"/>
-                <Setter Property="Foreground" Value="{DynamicResource ListViewItemWhilePlayForegroundColor}"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0,0.5,0,0"/>
-            </MultiDataTrigger>-->
-
-            <!--<MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=(Container:Captures.IsPlay)}" Value="True"/>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False"/>
-                    <Condition Binding="{Binding BadCheckSumExist}" Value="False"/>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=(ItemsControl.AlternationIndex)}" Value="0"/>
-                </MultiDataTrigger.Conditions>
-                <Setter Property="IsEnabled" Value="False"/>
-                <Setter Property="Foreground" Value="{DynamicResource ListViewItemWhilePlayForegroundColor}"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0,0.5,0,0"/>
-            </MultiDataTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=(Container:Captures.IsPlay)}" Value="True"/>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False"/>
-                    <Condition Binding="{Binding BadCheckSumExist}" Value="False"/>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=(ItemsControl.AlternationIndex)}" Value="1"/>
-                </MultiDataTrigger.Conditions>
-                <Setter Property="IsEnabled" Value="False"/>
-                <Setter Property="Foreground" Value="{DynamicResource ListViewItemWhilePlayForegroundColor}"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0,0.5,0,0"/>
-            </MultiDataTrigger>-->
-            <!--#endregion-->
-
-            <!--#region advanced options-->
-            <!--<MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=(WiresharkFile:WiresharkFile.AdvancedOptions)}" Value="True"/>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
-                    <Condition Binding="{Binding IsSelected}" Value="False"/>
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="{DynamicResource LabelDisableForegroundColor}" />
-                <Setter Property="BorderThickness" Value="0,0.3,0,0.3"/>
-            </MultiDataTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=(WiresharkFile:WiresharkFile.AdvancedOptions)}" Value="True"/>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="false" />
-                    <Condition Binding="{Binding IsSelected}" Value="False"/>
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="{DynamicResource LabelDisableForegroundColor}" />
-                <Setter Property="BorderThickness" Value="0,0.3,0,0.3"/>
-            </MultiDataTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=(WiresharkFile:WiresharkFile.AdvancedOptions)}" Value="True"/>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
-                    <Condition Binding="{Binding IsSelected}" Value="True"/>
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="{DynamicResource LabelDisableForegroundColor}" />
-                <Setter Property="BorderThickness" Value="0,0.3,0,0.3"/>
-            </MultiDataTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=(WiresharkFile:WiresharkFile.AdvancedOptions)}" Value="True"/>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="false" />
-                    <Condition Binding="{Binding IsSelected}" Value="True"/>
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="{DynamicResource LabelDisableForegroundColor}" />
-                <Setter Property="BorderThickness" Value="0,0.3,0,0.3"/>
-            </MultiDataTrigger>
-
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=(WiresharkFile:WiresharkFile.AdvancedOptions)}" Value="True"/>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
-                    <Condition Binding="{Binding IsSelected}" Value="false"/>
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="{DynamicResource LabelDisableForegroundColor}"/>
-                <Setter Property="BorderThickness" Value="0,0.3,0,0.3"/>
-            </MultiDataTrigger>-->
-            <!--#endregion-->
-
-            <!--#region disable-->
-            <!--<MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}" Value="False" />
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="{DynamicResource LabelDisableForegroundColor}"/>
-                -->
-            <!--<Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="{DynamicResource ListViewItemBackgroundColor}"/>
-                <Setter Property="BorderThickness" Value="0,0.3,0,0.3"/>-->
-            <!--
-            </MultiDataTrigger>-->
-            <!--#endregion-->
-
         </Style.Triggers>
     </Style>
 
@@ -318,9 +134,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}" 
-                            BorderThickness="{TemplateBinding BorderThickness}" 
-                            Background="{TemplateBinding Background}" 
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
                             CornerRadius="2"
                             SnapsToDevicePixels="true">
                         <Border x:Name="InnerBorder"
@@ -342,27 +158,52 @@
         </Setter>
         <Style.Triggers>
 
-            <MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="False" />
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False"/>
-                </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="#303030"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0,0,0,0"/>
-            </MultiDataTrigger>
+
 
             <MultiDataTrigger>
+
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
+
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="False" />
+
                     <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False"/>
+
                 </MultiDataTrigger.Conditions>
-                <Setter Property="Foreground" Value="DimGray"/>
+
+                <Setter Property="Foreground" Value="#303030"/>
+
                 <Setter Property="Background" Value="Transparent"/>
+
                 <Setter Property="BorderBrush" Value="Transparent"/>
+
                 <Setter Property="BorderThickness" Value="0,0,0,0"/>
+
             </MultiDataTrigger>
+
+
+
+            <MultiDataTrigger>
+
+                <MultiDataTrigger.Conditions>
+
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
+
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False"/>
+
+                </MultiDataTrigger.Conditions>
+
+                <Setter Property="Foreground" Value="DimGray"/>
+
+                <Setter Property="Background" Value="Transparent"/>
+
+                <Setter Property="BorderBrush" Value="Transparent"/>
+
+                <Setter Property="BorderThickness" Value="0,0,0,0"/>
+
+            </MultiDataTrigger>
+
         </Style.Triggers>
+
     </Style>
+
 </ResourceDictionary>

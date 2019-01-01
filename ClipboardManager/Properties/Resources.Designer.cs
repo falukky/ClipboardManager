@@ -169,5 +169,25 @@ namespace ClipboardManager.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon notes1 {
+            get {
+                object obj = ResourceManager.GetObject("notes1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon notes2 {
+            get {
+                object obj = ResourceManager.GetObject("notes2", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

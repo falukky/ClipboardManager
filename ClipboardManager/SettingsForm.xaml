@@ -134,7 +134,7 @@
                                           VerticalAlignment="Center"
                                           Grid.Column="0">
                                     </CheckBox>
-                                    <TextBlock Text="Clear history items older than"
+                                    <TextBlock Text="Clear history item older than"
                                            VerticalAlignment="Center"
                                            Grid.Column="1"
                                            FontSize="13"

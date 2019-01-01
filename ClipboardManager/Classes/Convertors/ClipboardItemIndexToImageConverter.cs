@@ -39,7 +39,7 @@ namespace ClipboardManager.Classes.Convertors
                     return "pack://application:,,,/Resources/9.ico";
 
                 default:
-                    return "pack://application:,,,/Resources/notes.ico";
+                    return "pack://application:,,,/Resources/notes2.ico";                                        
             }
         }
 

@@ -195,10 +195,11 @@
                     </Grid.RowDefinitions>
                     <ListView Name="ListViewUsers"
                               Grid.Row="1"
+                              FocusVisualStyle="{x:Null}"
 					          Background="Transparent"
 					          BorderBrush="Transparent"
 					          BorderThickness="0,0,0,0"
-                              materialDesign:ThemeAssist.Theme="Dark"
+                              materialDesign:ThemeAssist.Theme="Dark" 
 					          ItemsSource="{Binding Clipboards}"
                               ItemContainerStyle="{StaticResource ListViewItemStyle}"
 					          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -226,9 +227,9 @@
                                                                Foreground="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}}"
                                                                Grid.Column="1"
                                                                Margin="5,0,0,0">
-                                                        <i:Interaction.Behaviors>
+                                                        <!--<i:Interaction.Behaviors>
                                                             <behaviors:ToolTipBehavior ListViewItem="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}}" />
-                                                        </i:Interaction.Behaviors>
+                                                        </i:Interaction.Behaviors>-->
                                                         <TextBlock.ToolTip>
                                                             <ToolTip Content="{Binding Path=Text}" 
                                                                      ToolTipService.ShowDuration="5000"

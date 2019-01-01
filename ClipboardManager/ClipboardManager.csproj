@@ -179,5 +179,11 @@
   <ItemGroup>
     <Resource Include="Resources\notes.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\notes1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\notes2.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

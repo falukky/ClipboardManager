@@ -32,7 +32,7 @@ namespace ClipboardManager
 
         public MainWindow()
         {
-            InitializeComponent();            
+            InitializeComponent();
             //SettingsForm settingsForm = new SettingsForm();
             //settingsForm.ShowDialog();
             CreateNotifyIcon();
@@ -171,9 +171,12 @@ namespace ClipboardManager
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var desktopWorkingArea = SystemParameters.WorkArea;
+            Rect desktopWorkingArea = SystemParameters.WorkArea;
             Left = desktopWorkingArea.Right - Width;
             Top = desktopWorkingArea.Bottom - Height;
+            if (viewModel.Clipboards.Count != 0)
+                ListViewUsers.ScrollIntoView(ListViewUsers.Items[0]);
+            ListViewUsers.Focus();
         }
 
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -223,27 +226,16 @@ namespace ClipboardManager
 
         private void Window_StateChanged(object sender, EventArgs e)
         {
-            if (WindowState == WindowState.Normal)
-            {
-                ListViewUsers.Focus();
-                if (viewModel.Clipboards.Count != 0)
-                {
-                    //ListViewItem item = ListViewUsers.ItemContainerGenerator.ContainerFromIndex(0) as ListViewItem;
-                    //if (item != null)
-                    //{
+            //if (WindowState == WindowState.Normal)
+            //{
+            //    ListViewUsers.Focus();
+            //    if (viewModel.Clipboards.Count != 0)
+            //    {
+            //        ListViewUsers.SelectedItem = ListViewUsers.Items[0];
+            //        ListViewUsers.ScrollIntoView(ListViewUsers.SelectedItem);
 
-                    object obj = ListViewUsers.Items[0];
-                    if (obj != null)
-                    {
-                         ListViewUsers.SelectedItem = obj;
-                        ListViewUsers.ScrollIntoView(obj);                        
-                    }
-
-                    //item.Focus();
-                    //item.IsSelected = true;
-                    //}
-                }
-            }
+            //    }
+            //}
         }
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
