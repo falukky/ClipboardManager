@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\App.xaml
-42142503295
+6-697197362
 
-201053833045
+222036772640
 181776992094
-MainWindow.xaml;styles\GridViewColumnHeader.xaml;styles\ListViewItem.xaml;styles\Thumb.xaml;
+MainWindow.xaml;SettingsForm.xaml;styles\GridViewColumnHeader.xaml;styles\ListViewItem.xaml;styles\TextBlock.xaml;styles\Thumb.xaml;
 
-False
+True
 

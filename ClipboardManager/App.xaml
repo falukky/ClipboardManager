@@ -12,20 +12,14 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Blue.xaml"/>
 
-                <!--<ResourceDictionary Source="/styles/Button.xaml"/>
-                <ResourceDictionary Source="/styles/Label.xaml"/>
-                <ResourceDictionary Source="/styles/Separator.xaml"/>
-                <ResourceDictionary Source="/styles/TextBlock.xaml"/>
-                <ResourceDictionary Source="/styles/RadioButton.xaml"/>-->
                 <ResourceDictionary Source="/styles/GridViewColumnHeader.xaml"/>
                 <ResourceDictionary Source="/styles/ListViewItem.xaml"/>
                 <ResourceDictionary Source="/styles/Thumb.xaml"/>
-                <!--<ResourceDictionary Source="/styles/CheckBox.xaml"/>
-                <ResourceDictionary Source="/styles/ComboBox.xaml"/>
-                <ResourceDictionary Source="/styles/ComboBoxItem.xaml"/>-->
+                <ResourceDictionary Source="/styles/GridViewColumnHeader.xaml"/>
+                <ResourceDictionary Source="/styles/TextBlock.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

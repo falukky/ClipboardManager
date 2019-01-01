@@ -78,7 +78,11 @@
                                             </Trigger>
 
                                             <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="DimGray"/>
+                                                <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <SolidColorBrush Color="Silver" Opacity=".2" />
+                                                        </Setter.Value>
+                                                    </Setter>
                                                 <Setter Property="Foreground" Value="Gainsboro"/>
                                             </Trigger>
                                         </Style.Triggers>
@@ -226,11 +230,12 @@
                                                             <behaviors:ToolTipBehavior ListViewItem="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}}" />
                                                         </i:Interaction.Behaviors>
                                                         <TextBlock.ToolTip>
-                                                            <ToolTip Content="{Binding Path=Text}"
-                                                                     Placement="Left" 
+                                                            <ToolTip Content="{Binding Path=Text}" 
+                                                                     ToolTipService.ShowDuration="5000"
+                                                                     Placement="Left"
                                                                      PlacementRectangle="0,0,0,0"
-                                                                     HorizontalOffset="0" 
-                                                                     VerticalOffset="20"
+                                                                     HorizontalOffset="-45" 
+                                                                     VerticalOffset="-10"
                                                                      HasDropShadow="false"/>
                                                         </TextBlock.ToolTip>
                                                     </TextBlock>

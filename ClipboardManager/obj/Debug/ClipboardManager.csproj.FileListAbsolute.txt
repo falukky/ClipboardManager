@@ -32,14 +32,17 @@ C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\bin\Debug\System.Wind
 C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\obj\Debug\MainWindow.g.cs
+C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\obj\Debug\SettingsForm.g.cs
 C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\obj\Debug\App.g.cs
 C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\obj\Debug\ClipboardManager_MarkupCompile.cache
 C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\obj\Debug\ClipboardManager_MarkupCompile.lref
 C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\obj\Debug\App.baml
 C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\obj\Debug\MainWindow.baml
+C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\obj\Debug\SettingsForm.baml
 C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\obj\Debug\styles\GridViewColumnHeader.baml
 C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\obj\Debug\styles\ListViewItem.baml
+C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\obj\Debug\styles\TextBlock.baml
 C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\obj\Debug\styles\Thumb.baml
 C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\obj\Debug\ClipboardManager.g.resources
 C:\repo\clipboardmanager\ClipboardManager\ClipboardManager\obj\Debug\ClipboardManager.Properties.Resources.resources

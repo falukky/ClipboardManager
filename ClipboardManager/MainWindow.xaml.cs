@@ -1,7 +1,9 @@
 ﻿using ClipboardManager.Classes.Core;
 using ClipboardManager.Classes.KeyEvents;
+using ClipboardManager.Classes.Utils;
 using ClipboardManager.Classes.ViewModel;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -30,12 +32,19 @@ namespace ClipboardManager
 
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();            
+            //SettingsForm settingsForm = new SettingsForm();
+            //settingsForm.ShowDialog();
             CreateNotifyIcon();
             MinimizeApplication();
             InitiateVars();
             RegisterKeyEvents();
             InitiateClipboardMonitor();
+        }
+
+        private void SetToolTipDuration()
+        {
+            ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(10000));
         }
 
         private void InitiateVars()
@@ -111,18 +120,20 @@ namespace ClipboardManager
 
         private void MenuItemClose_Click(object sender, EventArgs e)
         {
-            
+            Application.Current.Shutdown();
         }
 
         private void MenuItemSettings_Click(object sender, EventArgs e)
         {
-
+            SettingsForm settingsForm = new SettingsForm();
+            settingsForm.ShowDialog();
         }
 
         private void MenuItemOpen_Click(object sender, EventArgs e)
         {
-
+            MaximaizeApplication();
         }
+
         private void NotifyIcon_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             //if (e.Button == System.Windows.Forms.MouseButtons.Right)
@@ -179,28 +190,12 @@ namespace ClipboardManager
                 if (ListViewUsers.SelectedIndex == -1)
                     return;
 
-                int index = ListViewUsers.SelectedIndex;
+                //int index = ListViewUsers.SelectedIndex;
                 ClipboardItem selectedItem = ListViewUsers.SelectedItem as ClipboardItem;
                 lastTextUsingEnterKey = selectedItem.Text;
                 Clipboard.SetText(lastTextUsingEnterKey);
                 ListViewUsers.SelectedItem = null;
                 MinimizeApplication();
-
-                //clipboardMonitor.OnClipboardContentChanged -= ClipboardMonitor_OnClipboardContentChanged;
-                //object source = e.Source;
-                //ClipboardItem selectedItem = ListViewUsers.SelectedItem as ClipboardItem;
-                //var viewModel = DataContext as ViewModel;
-                //try
-                //{
-                //    string text = Clipboard.GetText();
-                //    if (text != selectedItem.Text)
-                //        Clipboard.SetText(selectedItem.Text);
-                //}
-                //catch (COMException)
-                //{
-
-                //}
-
                 clipboardMonitor.OnClipboardContentChanged += ClipboardMonitor_OnClipboardContentChanged;
             }
         }
@@ -230,14 +225,23 @@ namespace ClipboardManager
         {
             if (WindowState == WindowState.Normal)
             {
+                ListViewUsers.Focus();
                 if (viewModel.Clipboards.Count != 0)
                 {
-                    ListViewItem item = ListViewUsers.ItemContainerGenerator.ContainerFromIndex(0) as ListViewItem;
-                    if (item != null)
+                    //ListViewItem item = ListViewUsers.ItemContainerGenerator.ContainerFromIndex(0) as ListViewItem;
+                    //if (item != null)
+                    //{
+
+                    object obj = ListViewUsers.Items[0];
+                    if (obj != null)
                     {
-                        item.Focus();
-                        item.IsSelected = true;
+                         ListViewUsers.SelectedItem = obj;
+                        ListViewUsers.ScrollIntoView(obj);                        
                     }
+
+                    //item.Focus();
+                    //item.IsSelected = true;
+                    //}
                 }
             }
         }
