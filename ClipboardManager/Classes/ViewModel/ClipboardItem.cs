@@ -1,18 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace ClipboardManager.Classes.ViewModel
 {
+    [XmlRoot("item")]
     public class ClipboardItem : INotifyPropertyChanged
     {
         private string _text { get; set; }
+        
         private int _index { get; set; }
+        private DateTime _time { get; set; }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [XmlElement("text")]
         public string Text
         {
             get { return _text; }
@@ -24,7 +27,7 @@ namespace ClipboardManager.Classes.ViewModel
         }
 
         public int Index
-        {
+        {            
             get { return _index; }
             set
             {
@@ -33,11 +36,21 @@ namespace ClipboardManager.Classes.ViewModel
             }
         }
 
+        [XmlElement("time")]
+        public DateTime Time
+        {
+            get { return _time; }
+            set
+            {
+                _time = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
+

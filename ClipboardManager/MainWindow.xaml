@@ -24,6 +24,12 @@
         MaxHeight="600"
         MaxWidth="500">
 
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding WindowCloseCommad}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <Window.Resources>
         
         <!--<ContextMenu x:Key="NotifierContextMenu"
@@ -231,13 +237,19 @@
                                                             <behaviors:ToolTipBehavior ListViewItem="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}}" />
                                                         </i:Interaction.Behaviors>-->
                                                         <TextBlock.ToolTip>
-                                                            <ToolTip Content="{Binding Path=Text}" 
-                                                                     ToolTipService.ShowDuration="5000"
+                                                            <ToolTip ToolTipService.ShowDuration="5000"
                                                                      Placement="Left"
                                                                      PlacementRectangle="0,0,0,0"
                                                                      HorizontalOffset="-45" 
                                                                      VerticalOffset="-10"
-                                                                     HasDropShadow="false"/>
+                                                                     HasDropShadow="false">
+                                                                <ToolTip.Content>
+                                                                    <StackPanel Orientation="Vertical">
+                                                                        <TextBox Text="{Binding Path=Time}"/>
+                                                                        <TextBox Text="{Binding Path=Text}"/>
+                                                                    </StackPanel>
+                                                                </ToolTip.Content>
+                                                            </ToolTip>
                                                         </TextBlock.ToolTip>
                                                     </TextBlock>
                                                 </Grid>

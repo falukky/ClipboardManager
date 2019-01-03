@@ -1,0 +1,9 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Table1>
+    <ClipHeader>InitiateClipboardMonitor</ClipHeader>
+  </Table1>
+  <Table1>
+    <ClipHeader>clipboardItem</ClipHeader>
+  </Table1>
+</NewDataSet>

@@ -1,12 +1,13 @@
 ﻿using ClipboardManager.Classes.Core;
 using ClipboardManager.Classes.KeyEvents;
-using ClipboardManager.Classes.Utils;
 using ClipboardManager.Classes.ViewModel;
 using System;
-using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Xml.Serialization;
 
 namespace ClipboardManager
 {
@@ -15,10 +16,12 @@ namespace ClipboardManager
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string _dataFileName = @"ClipData.xml";
+        DataTable _clipDataTable = new DataTable();
+
         private string lastText;
         private string lastTextUsingEnterKey;
         private System.Windows.Forms.NotifyIcon notifyIcon;
-
         private System.Windows.Forms.ContextMenu contextMenu;
         private System.Windows.Forms.MenuItem menuItemClose;
         private System.Windows.Forms.MenuItem menuItemOpen;
@@ -40,6 +43,15 @@ namespace ClipboardManager
             InitiateVars();
             RegisterKeyEvents();
             InitiateClipboardMonitor();
+            InitDataTable();
+        }
+
+        private void SaveToBinFile(ClipboardItem clipboardItem)
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ClipboardItem));
+            FileStream fileStream = File.Create(System.Windows.Forms.Application.StartupPath + "\\database.xml");
+            xmlSerializer .Serialize(fileStream, clipboardItem);
+            fileStream.Dispose();
         }
 
         private void SetToolTipDuration()
@@ -156,12 +168,17 @@ namespace ClipboardManager
             {
                 string clipboardText = Clipboard.GetText(TextDataFormat.UnicodeText);
                 if (clipboardText != lastText && clipboardText != "" && clipboardText != lastTextUsingEnterKey)
-                    viewModel.Clipboards.Insert(0, new ClipboardItem
+                {
+                    ClipboardItem clipboardItem = new ClipboardItem
                     {
-                        Text = clipboardText
-                    });
+                        Text = clipboardText,
+                        Time = DateTime.Now
+                    };
 
-                lastText = clipboardText;
+                    viewModel.Clipboards.Insert(0, clipboardItem);
+                    //SaveToBinFile(clipboardItem);
+                    lastText = clipboardText;
+                }
             }
             catch (Exception)
             {
@@ -174,9 +191,14 @@ namespace ClipboardManager
             Rect desktopWorkingArea = SystemParameters.WorkArea;
             Left = desktopWorkingArea.Right - Width;
             Top = desktopWorkingArea.Bottom - Height;
-            if (viewModel.Clipboards.Count != 0)
-                ListViewUsers.ScrollIntoView(ListViewUsers.Items[0]);
-            ListViewUsers.Focus();
+
+            //if (viewModel.Clipboards.Count != 0)
+            //{
+            //    ListViewUsers.SelectedIndex = 0;
+            //    ListViewUsers.ScrollIntoView(ListViewUsers.SelectedItem);
+            //}
+
+            //ListViewUsers.Focus();
         }
 
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -222,20 +244,33 @@ namespace ClipboardManager
         private void Window_Deactivated(object sender, EventArgs e)
         {
             MinimizeApplication();
+            //if (viewModel.Clipboards.Count != 0)
+            //{
+            //ListViewUsers.SelectedIndex = 0;
+            //ListViewUsers.ScrollIntoView(ListViewUsers.SelectedItem);
+
+            //ListBoxItem item = (ListBoxItem)ListViewUsers.ItemContainerGenerator.ContainerFromIndex(0);
+            //FocusManager.SetFocusedElement(this /* focus scope region */, item);
+            //}
         }
 
         private void Window_StateChanged(object sender, EventArgs e)
         {
-            //if (WindowState == WindowState.Normal)
-            //{
-            //    ListViewUsers.Focus();
-            //    if (viewModel.Clipboards.Count != 0)
-            //    {
-            //        ListViewUsers.SelectedItem = ListViewUsers.Items[0];
-            //        ListViewUsers.ScrollIntoView(ListViewUsers.SelectedItem);
+            if (WindowState == WindowState.Normal)
+            {
+                if (viewModel.Clipboards.Count != 0)
+                {
+                    ListBoxItem item = (ListBoxItem)ListViewUsers.ItemContainerGenerator.ContainerFromIndex(0);
+                    FocusManager.SetFocusedElement(this /* focus scope region */, item);
+                }
+                //if (viewModel.Clipboards.Count != 0)
+                //{
+                //    ListViewUsers.SelectedIndex = 0;
+                //    ListViewUsers.ScrollIntoView(ListViewUsers.SelectedItem);
+                //}
 
-            //    }
-            //}
+                //ListViewUsers.Focus();
+            }
         }
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -258,6 +293,15 @@ namespace ClipboardManager
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            foreach (var item in viewModel.Clipboards)
+            {
+                DataRow dataRow = _clipDataTable.NewRow();
+                dataRow["ClipHeader"] = item.Text;
+                _clipDataTable.Rows.Add(dataRow);
+            }
+
+            WriteDataFile();
+
             notifyIcon.Visible = false;
         }
 
@@ -279,6 +323,34 @@ namespace ClipboardManager
         private void BtnSettings_Click(object sender, RoutedEventArgs e)
         {
             //
+        }
+
+        private void InitDataTable()
+        {
+            _clipDataTable = new DataTable();
+            _clipDataTable.Columns.Add("ClipHeader");
+            _clipDataTable.AcceptChanges();
+        }
+
+        private void WriteDataFile()
+        {
+            DataSet ClipDataSet = new DataSet();
+            ClipDataSet.Tables.Add(_clipDataTable);
+            ClipDataSet.WriteXml(_dataFileName);
+        }
+
+        private void ReadDataFile()
+        {
+            DataSet ClipDataSet = new DataSet();
+            if (File.Exists(_dataFileName))
+            {
+                ClipDataSet.ReadXml(_dataFileName);
+
+                foreach (DataRow item in ClipDataSet.Tables[0].Rows)
+                {
+                    viewModel.Clipboards.Add(new ClipboardItem { Text = Convert.ToString(item["ClipHeader"]) });
+                }
+            }
         }
     }
 }
